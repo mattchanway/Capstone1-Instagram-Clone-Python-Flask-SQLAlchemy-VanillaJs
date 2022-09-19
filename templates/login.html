@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<br>
+<br>
+<div class = "container bg-white">
+<div class = "row justify-content-center">
+<div class = "col-6 d-flex justify-content-center bg-light shadow-sm p-3 mb-5 bg-light rounded">
+<form action = "/login" method="POST" id="user_login_form">
+
+    <h1>Log In</h1>
+    {{ form.hidden_tag() }}
+
+    {% for field in form if field.widget.input_type != 'hidden' %}
+      {% for error in field.errors %}
+        <span>{{ error }}</span>
+      {% endfor %}
+      {{ field(placeholder=field.label.text, class="form-control") }}
+      <br>
+    {% endfor %}
+
+    <button class = "btn btn-primary" type="submit">Log in</button>
+  </form>
+</div>
+</div>
+
+
+<div class = "row justify-content-center">
+
+  <div class = "col-6 d-flex justify-content-center bg-light shadow-sm p-3 mb-5 bg-light rounded">
+
+    <a class ="link-st" href ="/signup">Don't have an account? Sign up</a><br>
+  </div>
+
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% block content %}
+{% set post_liked_by = data['liked_by'] %}
+{% set postid = data['id'] %}
+<div class = "container bg-light">
+    <div class = "row">
+        <div class ="col-12 d-flex justify-content-center" style="height:30rem">
+
+            <div class= "card" style="width:70%">
+                <div class="card-body text-wrap" id = "post-frame" data-postid = "{{data['id']}}" data-logged-in-username = "{{curr_user}}">
+                    {% if 'embed' in data['media'] or 'video' in data['media'] %}
+                    <iframe class = "embed-responsive-item" style="margin: 0 auto; display: block; height:75%; width:75%"
+                    src="{{data['media']}}"></iframe><br>
+                    {% else %}
+                    {% set picture = data['media'] %}
+                    <div class="border border-dark" style="margin: 0 auto; display: block; height:75%; width:75%; overflow:hidden; background-size:cover;background-position:center; background-image:url({{picture}})" >
+    
+                    </div>
+                    {% endif %}
+
+                    {% if curr_user != None %}
+                    <i id = "post-like-icon" data-curr-userid= "{{curr_userid}}" data-postid = "{{data['id']}}" class="{{'fa-solid fa-heart' if curr_user in post_liked_by else 'fa-regular fa-heart'}}"></i>
+                    {% endif %}
+                    {% if post_liked_by|count >0 %}
+                    <a href ="" id = "likers-link" data-postid = "{{data['id']}}">{{post_liked_by|count}}</a>
+                    {% endif %}
+                   
+                        <p class="overflow">{{data['caption']}}</p>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class ="row" >
+        <div class = "col-12 d-flex justify-content-left"   >
+            <ul id = "comment-list" data-curr-user = "{{curr_user}}"style="overflow:hidden"  >
+                {% for comment in data['comments'] %}
+                {% set comment_id = comment['id'] %}
+                {% set comment_liked_by = comment['liked_by'] %}
+                {% set commentor_image = comment['commentor_image'] %}
+
+
+                    <li style="margin: 0; padding: 9px 0 0px 22px ; list-style: none; background-repeat: no-repeat; background-position: left-center; background-image: url({{commentor_image}}); background-size: 20px;" data-commentid = "{{comment_id}}">
+                        <b>{{comment['commentor']}}  </b>{{comment['text']}} 
+
+                        {% if curr_user != None %}
+                        <i class="{{'fa-solid fa-heart' if curr_user in comment_liked_by else 'fa-regular fa-heart'}}"></i>
+                        {% endif %}
+                        {% if comment['liked_by']|count > 0 %}
+                        <a href ="" data-commmentid ="{{comment_id}}">{{comment['liked_by']|count}}</a>
+                        {% endif %}
+                        {% if comment['commentor'] == curr_user %}
+                        <i data-commmentid ="{{comment_id}}" class="fa-solid fa-trash"></i>
+                        <!-- <form method = "POST">
+                            <button class="btn btn-danger" type="submit" data-commentid = "{{comment_id}}">Del</button>
+                        </form> -->
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+
+
+
+        </div>
+
+    </div>
+    <!-- end of card div -->
+    <div class = "row">
+        <div class ="col-12 d-flex justify-content-center">
+            {% if curr_user != None %}    
+            <form id ="add-comment-form" method = "POST">
+                <input id = "added-comment"type = "textarea">
+                <button class = "btn btn-outline-dark" type="submit">Add Comment</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+    <div class = "row">
+        <div class ="col-12 d-flex justify-content-center">
+            {% if curr_userid == data['user_id'] %}
+            <form action = "{{ url_for('handle_delete_post', postid=data['id']) }}" method = "POST">
+                <button class = "btn btn-outline-dark" type="submit">Delete Post</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+        
+    
+
+<!-- {% if data['user_id']== curr_userid %}
+
+<button id="post-delete-btn" data-postid="{{postid}}">Delete Post</button>
+
+{% endif %} -->
+
+</div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ url_for('static',filename='indiv-post.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,54 @@
+h1{
+
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+   
+
+}
+
+.btn {
+    display: block;
+    margin: 0 auto;
+
+}
+
+a.link-st {
+
+    color: blue;
+    text-decoration: underline;
+}
+
+body{
+    background-color: white;
+}
+
+a{
+    color:black
+}
+
+a:hover{
+    text-decoration: none;
+    color:black
+}
+
+.overflow{
+    display: -webkit-box;
+    /* max-width: 200px; */
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+}
+
+.overflow-feed{
+    display: -webkit-box;
+    /* max-width: 200px; */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
+}
+
+
+
+

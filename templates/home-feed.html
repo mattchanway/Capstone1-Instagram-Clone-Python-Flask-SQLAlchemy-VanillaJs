@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class = "container bg-light">
+    {% for post in posts %}
+    <div class = "row">
+        <div class ="col-12 d-flex justify-content-center" style="height:30rem;">
+            <div class = "card border border-dark h-100 w-75" >
+                <div class="card-header" style="white-space:nowrap;">
+                    <a href ="/user/{{post['poster']}}">
+                    <img src = "{{post['poster_image']}}" alt="User profile image" width="50" height="50" style="display : inline-block">
+                    <h4 style="display : inline-block">{{post['poster']}}</h4>
+                    </a>
+                </div>
+               
+                
+                    <div class="card-body h-75">
+                        <a href ="/posts/{{post['post_id']}}">
+                        {% if 'embed' in post['media'] or 'video' in post['media'] %}
+                        <iframe style = "margin: 0 auto; display: block;height:75%; width:75%"class="border border-dark" src="{{post['media']}}"></iframe>
+                        {% else %}
+                        {% set picture = post['media'] %}
+                        <div class="border border-dark h-75 w-50" style="margin: 0 auto; display: block; overflow:hidden; background-size:cover;background-position:center; background-image:url({{picture}})" >
+    
+                        </div>
+                        {% endif %}
+                        <p class = "card-text overflow-feed">{{post['caption']}}</p>
+                        <p class = "card-text">{{post['timestamp']}}</p>
+                    </a>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+    <br>
+{% endfor %}
+</div>
+
+{% endblock %}

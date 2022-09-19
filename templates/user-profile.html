@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class = "container-fluid bg-light">
+    <div width="420" height ="90" style="white-space:nowrap">
+        <img src="{{data['image']}}" width="100" height="100" style="display : inline-block">
+        <h1 class ="text-dark" style="display : inline-block" id="username-heading", data-curr-user="{{curr_user}}">{{data['username']}}</h1></div><br>
+
+    {% if curr_user != None and curr_user != data['username'] %}
+    <form id = "follow-form" method = "POST" data-username="{{data['username']}}">
+        <button><i class = "{{'fa-solid fa-check' if data['id'] in logged_in_user_following}}"></i>{{'Following' if data['id'] in logged_in_user_following else 'Follow' }}</button>
+    </form>
+    {% endif %}
+
+    <a class ="text-dark" id ='followers-btn' href ="" data-username="{{data['username']}}">{{data['followers']|length}} Followers</a>  
+    <a class ="text-dark" id ='following-btn' href ="" data-username="{{data['username']}}">{{data['following']|length}} Following</a>
+
+    <!-- previously had an extra container here, closed after the 2nd endfor -->
+        {% for row in data['posts']|batch(3) %}
+        <div class = "row">
+            {% for column in row %}
+            <div class = "col-sm-4" style="height:30rem">
+                <a href = "/posts/{{column.id}}">
+                    <div class = "card border border-dark h-100"  >
+                        {% if 'embed' in column['media'] or 'video' in column['media'] %}
+                        <iframe src="{{column['media']}}" class="h-75" >
+                        </iframe>
+                        {% else %}
+                        {% set picture = column['media'] %}
+                        <div class="border border-dark h-75" style="overflow:hidden; background-size:cover;background-position:center; background-image:url({{picture}})" >
+                            <!-- <img src="{{column['media']}}" style="height:75%; width:100%" > -->
+                        </div>
+                        {% endif %}
+                        <p class = "card text overflow-feed">{{column['caption']}}</p>
+                        <p class = "card text">{{column['timestamp']}}</p>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div><br>   
+    {% endfor %}
+    
+{% if curr_user == data['username'] %}
+<form action = "{{ url_for('handle_delete_user', username=data['username']) }}" method = "POST">
+    <button>Delete Account</button>
+</form>
+
+{% endif %}
+{% endblock %}
+</div>
+
+
+{% block javascript %}
+    <script src="{{ url_for('static',filename='user-profile.js') }}"></script>
+{% endblock %}
+
