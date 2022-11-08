@@ -1,10 +1,16 @@
-Instagram Clone
+#Instagram Clone
 
 The objective here was to create a simple 'Insta-inspired' full-stack app using Python, Flask, and PostgresQL. The styling is plain, and there will be future improvements and features implemented, however, it was a tremendously fulfilling and fun project to complete after only having coded for four months or so (I say this humbly, as I know there are people who have achieved far more in a much shorter time frame). I opted to create a simple CRUD 'api' that handles the back-end operations, detailed specifically below. For now, these 'api' routes can just be found in app.py.
 
+##How To Use
+
+A video demonstration of the app's core features can be seen here: https://youtu.be/cKbKgxXR3iA.
+
+To run the app locally, create a virtual environment, and run pip install -r requirements.txt. In your terminal, type 'flask run.'
+
 During this project, I had weekly mentoring calls with Christos Gkoros, a software engineer located in Athens, Greece. His patient manner and years of wisdom as a software architect were invaluable to my learning. Four test accounts haved been created, johndoe, janedoe, lisadoe, and markdoe, all with the password 'password.'
 
-Here is a list of the simple features implemented so far:
+##Here is a list of the simple features implemented so far:
 
 -A user can login, and they will shown a 'feed' of posts from accounts they follow that have been made within the last 7 days.
 -New users may sign up
@@ -16,8 +22,6 @@ Here is a list of the simple features implemented so far:
 and see a list of all users who have liked a given comment.
 -Users can delete any of their own posts, and also delete their own account.
 -If a user is not logged in, they can still view posts and account detail pages, but they cannot carry out activities that are tied to a user (ie they cannot post, like posts, comment, etc).
-
-How To Run:
 
 The app is deployed at https://instant-gram-mpc.herokuapp.com/.
 
