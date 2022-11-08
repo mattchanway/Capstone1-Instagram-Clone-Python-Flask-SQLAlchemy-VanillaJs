@@ -1,4 +1,4 @@
-Welcome to Gramly, my first capstone project.
+Instagram Clone
 
 The objective here was to create a simple 'Insta-inspired' full-stack app using Python, Flask, and PostgresQL. The styling is plain, and there will be future improvements and features implemented, however, it was a tremendously fulfilling and fun project to complete after only having coded for four months or so (I say this humbly, as I know there are people who have achieved far more in a much shorter time frame). I opted to create a simple CRUD 'api' that handles the back-end operations, detailed specifically below. For now, these 'api' routes can just be found in app.py.
 
@@ -19,7 +19,7 @@ and see a list of all users who have liked a given comment.
 
 How To Run:
 
-As there have been minor tweaks made to the code since the initial deployment, the easiest approach would be to create a database, 'gramly,' and then run seed.py. The app can be demoed on a local server, and the latest codebase will be deployed live as part of my upcoming portfolio upon completion of my final capstone project. Stay tuned!
+The app is deployed at https://instant-gram-mpc.herokuapp.com/.
 
 
 
