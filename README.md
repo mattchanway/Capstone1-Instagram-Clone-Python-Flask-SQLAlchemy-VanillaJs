@@ -6,6 +6,8 @@ The objective here was to create a simple 'Insta-inspired' full-stack app using 
 
 A video demonstration of the app's core features can be seen here: https://youtu.be/cKbKgxXR3iA.
 
+The site is deployed at https://insta-clone-mpc.herokuapp.com/.
+
 To run the app locally, create a virtual environment, and run pip install -r requirements.txt. In your terminal, type 'flask run.'
 
 During this project, I had weekly mentoring calls with Christos Gkoros, a software engineer located in Athens, Greece. His patient manner and years of wisdom as a software architect were invaluable to my learning. Four test accounts haved been created, johndoe, janedoe, lisadoe, and markdoe, all with the password 'password.'
@@ -23,7 +25,7 @@ and see a list of all users who have liked a given comment.
 -Users can delete any of their own posts, and also delete their own account.
 -If a user is not logged in, they can still view posts and account detail pages, but they cannot carry out activities that are tied to a user (ie they cannot post, like posts, comment, etc).
 
-The app is deployed at https://instant-gram-mpc.herokuapp.com/.
+
 
 
 
